@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export TELEGRAM_BOT_TOKEN=""
+export TELEGRAM_CHAT_ID=""
+export TELEGRAM_ISSUES_CHAT_ID=""
+export TELEGRAM_PR_CHAT_ID=""
+export TELEGRAM_MAINTAINER_CHAT_ID=""
