@@ -1,11 +1,61 @@
 #!/bin/bash
 
-alias c='claude'
-alias c-r='claude -r'
-alias c-c='claude -c'
-alias c-s='claude --style compact'
-alias c-d="claude --dangerously-skip-permissions"
+# Modern CLI replacements
+if command -v eza &>/dev/null; then
+    alias ls='eza --icons --group-directories-first'
+    alias ll='eza -la --icons --group-directories-first --git'
+    alias la='eza -a --icons --group-directories-first'
+    alias lt='eza -T --icons --level=3'
+    alias l='eza -l --icons --group-directories-first'
+fi
+
+if command -v bat &>/dev/null; then
+    alias cat='bat --paging=never --style=plain'
+    alias catp='bat'
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+    export MANROFFOPT="-c"
+fi
+
+if command -v btop &>/dev/null; then
+    alias top='btop'
+fi
+
+if command -v lazygit &>/dev/null; then
+    alias lg='lazygit'
+fi
+
+# Directory navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias -- -='cd -'
+
+# Safety nets
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -pv'
+
+# Quick utilities
+alias h='history | tail -30'
+alias ports='ss -tulnp'
+alias myip='curl -s ifconfig.me'
+alias weather='curl -s wttr.in?format=3'
+alias path='echo $PATH | tr ":" "\n" | sort | uniq'
+alias disk='df -h --type=ext4 --type=btrfs --type=xfs 2>/dev/null || df -h'
+
+# Claude
+#alias c='claude'
+#alias c-r='claude -r'
+#alias c-c='claude -c'
+#alias c-s='claude --style compact'
+#alias c-d='claude --dangerously-skip-permissions'
+#alias c-h='headroom proxy --port 8787'
+
+# Antigravity CLI (shared 5GB cgroup slice with auto-skip permissions)
+alias agy='systemd-run --user --slice=antigravity.slice --scope --same-dir -q /home/daoneill/.local/bin/agy --dangerously-skip-permissions'
 alias gfur='MAIN=`git remote show upstream | grep "HEAD branch" | cut -d ":" -f 2 | xargs` && git fetch upstream && git rebase upstream/$MAIN'
+
 
 # CSB VM console (virt-manager SPICE viewer is broken, use remote-viewer)
 alias csb-console='remote-viewer --hotkeys=release-cursor=shift+f12 spice://127.0.0.1:5900 &'
