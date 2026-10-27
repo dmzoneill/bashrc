@@ -1,5 +1,9 @@
 # bashrc
 
+<p align="center">
+  <img src=".github/logo.png" alt="bashrc logo" width="128" />
+</p>
+
 My modular Bash configuration.
 
 ## How it works
