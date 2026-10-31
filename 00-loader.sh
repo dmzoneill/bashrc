@@ -6,9 +6,10 @@
 
 # Source all scripts from scripts.d/ in order
 for rc in ~/.bashrc.d/scripts.d/*.sh; do
-    if [ -f "$rc" ]; then
-        . "$rc" 2>/dev/null || echo "Failed to source: $rc" >&2
-    fi
+	if [[ -f "$rc" ]]; then
+		# shellcheck source=/dev/null
+		. "$rc" 2>/dev/null || echo "Failed to source: $rc" >&2
+	fi
 done
 unset rc
 
