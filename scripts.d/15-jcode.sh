@@ -63,8 +63,8 @@ jcode__remove_stale() {
 }
 
 jcode__wait_for_socket() {
-    local socket="$1" count
-    for count in $(seq 1 100); do
+    local socket="$1"
+    for _ in $(seq 1 100); do
         jcode__socket_serving "$socket" && return 0
         sleep 0.1
     done
